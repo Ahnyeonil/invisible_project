@@ -4,7 +4,7 @@ import com.sparta.invisible_project.Dto.LoginDto;
 import com.sparta.invisible_project.Dto.TokenDto;
 import com.sparta.invisible_project.Entity.Member;
 import com.sparta.invisible_project.Dto.MemberRequestDto;
-import com.sparta.invisible_project.Dto.ResponseDto;
+import com.sparta.invisible_project.Dto.LoginResponseDto;
 import com.sparta.invisible_project.Entity.RefreshToken;
 import com.sparta.invisible_project.Jwt.JwtUtil;
 import com.sparta.invisible_project.Repository.MemberRepository;
@@ -28,7 +28,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public ResponseDto signup(MemberRequestDto requestDto) {
+    public LoginResponseDto signup(MemberRequestDto requestDto) {
         //username duplication check
         if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
             throw new RuntimeException("duplication in username");
@@ -38,11 +38,12 @@ public class MemberService {
         Member member = new Member(requestDto);
 
         memberRepository.save(member);
-        return new ResponseDto("Sign up Success", HttpStatus.OK.value());
+        return new LoginResponseDto("Sign up Success", HttpStatus.OK.value());
 
     }
 
-    public ResponseDto login(LoginDto loginDto, HttpServletResponse response) {
+    public LoginResponseDto login(LoginDto loginDto, HttpServletResponse response) {
+        System.out.println(loginDto.getUsername());
         Member member = memberRepository.findByUsername(loginDto.getUsername()).orElseThrow(
                 () -> new RuntimeException("User not found")
         );
@@ -59,7 +60,7 @@ public class MemberService {
         }
         setHeader(response, tokenDto);
 
-        return new ResponseDto("Login Success", HttpStatus.OK.value());
+        return new LoginResponseDto("Login Success", HttpStatus.OK.value());
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto){
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());

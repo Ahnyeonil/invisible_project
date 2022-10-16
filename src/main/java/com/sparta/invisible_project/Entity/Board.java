@@ -22,9 +22,14 @@ public class Board {
     @Column
     private String title;
 
-    public Board (BoardDto boardDto){
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    public Board (BoardDto boardDto, Member member){
         this.content = boardDto.getContent();
         this.title = boardDto.getTitle();
+        this.member = member;
     }
 
 }

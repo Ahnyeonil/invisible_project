@@ -30,3 +30,15 @@ Content-Type: application/json
 
 }
 ###
+
+POST http://localhost:8080/api/boards
+Content-Type: application/json
+
+{
+  "header":{
+    "Access_Token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY1ODk4Njc2LCJpYXQiOjE2NjU4OTg2NjZ9.uVAbysWUKRvGsBh9T_90M_1UZOXDArZmVc72jwMXt-8"
+  },
+    "content": "content1",
+    "title": "title1"
+
+}

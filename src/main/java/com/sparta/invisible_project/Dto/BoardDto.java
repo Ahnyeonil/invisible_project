@@ -12,6 +12,7 @@ public class BoardDto {
 
     private String content;
 
+
     public BoardDto(String title, String content) {
         this.title = title;
         this.content = content;

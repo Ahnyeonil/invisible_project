@@ -61,7 +61,6 @@ public class JwtUtil {
         return new TokenDto(createToken(username, "Access"),createToken(username, "Refresh"));
     }
 
-
     public String createToken(String username, String type){
         Date date = new Date();
         long time = type.equals("Access") ? ACCESS_TIME : REFRESH_TIME;

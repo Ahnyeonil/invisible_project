@@ -1,18 +1,17 @@
 package com.sparta.invisible_project.Dto;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
-public class ResponseDto {
+@AllArgsConstructor
+public class ResponseDto<T> {
+    private T data;
+    private Boolean success;
+    private Error error;
 
-    private String msg;
-    private int statusCode;
-
-    public ResponseDto(String msg, int statusCode) {
-        this.msg = msg;
-        this.statusCode = statusCode;
+    public static <T> ResponseDto<T> success(T data){
+        return new ResponseDto<>(data,true,null);
     }
+
 }
