@@ -11,7 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-@Setter
+@Setter // Setter 필요할까요?
 @Getter
 @NoArgsConstructor
 @Entity
