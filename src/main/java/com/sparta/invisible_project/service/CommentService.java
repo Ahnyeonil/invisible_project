@@ -4,7 +4,7 @@ import com.sparta.invisible_project.entity.Board;
 import com.sparta.invisible_project.entity.Comment;
 import com.sparta.invisible_project.dto.CommentDto;
 import com.sparta.invisible_project.dto.ResponseDto;
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import com.sparta.invisible_project.repository.BoardRepository;
 import com.sparta.invisible_project.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +40,9 @@ public class CommentService {
     // 댓글 등록
     public ResponseDto<?> createComment(CommentDto commentDto, long boardId) {
 
-        Members members = new Members();
+        Member member = new Member();
         Board board = boardRepository.findById(boardId).orElse(null);
-        Comment comment = new Comment(commentDto.getBody(), board, members);
+        Comment comment = new Comment(commentDto.getBody(), board, member);
 
         commentRepository.save(comment);
 

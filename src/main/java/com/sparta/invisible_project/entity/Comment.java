@@ -1,6 +1,6 @@
 package com.sparta.invisible_project.entity;
 
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,15 +24,15 @@ public class Comment {
     private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "members_name")
-    private Members members;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     //Board 에서 붙일지 comment 에서 붙일지는 향후 결정. 단방향/양방향
     //거기에 맞춰 constructor 사용 예정.
-    public Comment(String body, Board board, Members memebrs){
+    public Comment(String body, Board board, Member memebr){
         this.body = body;
         this.board = board;
-        this.members = memebrs;
+        this.member = memebr;
     }
 
     public void update(String body) {

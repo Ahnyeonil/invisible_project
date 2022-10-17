@@ -1,7 +1,7 @@
 package com.sparta.invisible_project.entity;
 
 import com.sparta.invisible_project.dto.BoardDto;
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,11 +21,11 @@ public class Board {
     @Column
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Members member;
+    private Member member;
 
-    public Board (BoardDto boardDto, Members member){
+    public Board (BoardDto boardDto, Member member){
         this.title = boardDto.getTitle();
         this.content = boardDto.getContent();
         this.member = member;

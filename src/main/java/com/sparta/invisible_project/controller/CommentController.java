@@ -1,6 +1,5 @@
 package com.sparta.invisible_project.controller;
 
-import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.dto.CommentDto;
 import com.sparta.invisible_project.dto.ResponseDto;
 import com.sparta.invisible_project.service.CommentService;
