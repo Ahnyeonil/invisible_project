@@ -1,10 +1,7 @@
-package com.sparta.invisible_project.Controller;
+package com.sparta.invisible_project.controller;
 
-import com.sparta.invisible_project.Service.MemberService;
-import lombok.AllArgsConstructor;
+import com.sparta.invisible_project.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
