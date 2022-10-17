@@ -10,6 +10,8 @@ public class ResponseDto<T> {
     private Boolean success;
     private Error error;
 
+
+
     public static <T> ResponseDto<T> success(T data){
         return new ResponseDto<>(data,true,null);
     }

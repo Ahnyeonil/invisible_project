@@ -32,8 +32,8 @@ public class MemberService {
         //username duplication check
         if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
             throw new RuntimeException("duplication in username");
-        }
-        ;
+        };
+
         requestDto.setPasswordEncoder(passwordEncoder.encode(requestDto.getPassword()));
         Member member = new Member(requestDto);
 

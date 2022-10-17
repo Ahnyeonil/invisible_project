@@ -7,13 +7,11 @@ import com.sparta.invisible_project.Entity.Member;
 import com.sparta.invisible_project.Service.BoardService;
 import com.sparta.invisible_project.Service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 @RestController
 @RequiredArgsConstructor
 public class BoardController {
@@ -21,11 +19,25 @@ public class BoardController {
     private final BoardService boardService;
 
 
-    @PostMapping("/boards")
+    @PostMapping("/boards/post")
     public ResponseDto<?> createBoard(@RequestBody BoardDto boardDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         System.out.println(boardDto.getContent());
         System.out.println(userDetails.getMember());
         return boardService.createBoard(boardDto, userDetails.getMember());
+    }
+
+    @GetMapping("/boards")
+    public ResponseDto<?> getBoard(){
+        return boardService.getBoard();
+    }
+
+    @DeleteMapping("/boards/delete/{id}")
+    public ResponseDto<?> deleteBoard(@PathVariable Long id){
+        return boardService.deleteBoard(id);
+    }
+    @PutMapping("/boards/update/{id}")
+    public ResponseDto<?> updateBoard(@PathVariable Long id,@RequestBody BoardDto dto){
+        return boardService.updateBoard(dto, id);
     }
 
 }

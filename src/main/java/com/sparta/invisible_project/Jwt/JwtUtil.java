@@ -20,9 +20,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Optional;
+import java.time.Instant;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -32,8 +31,8 @@ public class JwtUtil {
     private final UserDetailsService userDetailsService;
     public static final String ACCESS_TOKEN = "Access_Token";
     public static final String REFRESH_TOKEN= "Refresh_Token";
-    private static final long ACCESS_TIME = 1000 * 10L;
-    private static final long REFRESH_TIME = 365 * 10000 * 3000L;
+    private static final long ACCESS_TIME = 1000L * 60 * 60 * 24;
+    private static final long REFRESH_TIME = 1000L * 60 * 60 * 365;
 
 
 
@@ -63,12 +62,14 @@ public class JwtUtil {
 
     public String createToken(String username, String type){
         Date date = new Date();
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
+
         long time = type.equals("Access") ? ACCESS_TIME : REFRESH_TIME;
 
 
        return Jwts.builder()
                 .setSubject(username)
-                .setExpiration(new Date(date.getTime()+ time))
+                .setExpiration(new Date(date.getTime()+time))
                 .setIssuedAt(date)
                 .signWith(key, signatureAlgorithm)
                 .compact();

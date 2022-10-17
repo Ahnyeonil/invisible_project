@@ -31,5 +31,10 @@ public class Board {
         this.title = boardDto.getTitle();
         this.member = member;
     }
+    public void boardUpdate(BoardDto dto){
+        this.content = dto.getContent() == null ? this.content : dto.getContent();
+        this.title = dto.getTitle() == null ? this.title : dto.getTitle();
+    }
+
 
 }

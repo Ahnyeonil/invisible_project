@@ -39,4 +39,6 @@ public class MemberController {
         return new LoginResponseDto("Issue Success", HttpStatus.OK.value());
     }
 
+
+
 }

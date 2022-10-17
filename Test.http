@@ -1,6 +1,6 @@
 GET http://localhost:8080/api/issue/token
 Accept: application/json
-Refresh_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AbWFpbC5jb20iLCJleHAiOjE2NjU2Nzk1OTcsImlhdCI6MTY2NTY2OTU5N30.VrAbI37jKCzlkDP8xGWVZq3aL8qwao9OZSFs-mMzz4s
+Refresh_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY3Mjk1MDYzLCJpYXQiOjE2NjU5ODEwNjN9.1sFktVwNMDb2DU0hGfcw5YfRg7pwzXN1mdhM73hom-E
 
 ###
 POST http://localhost:8080/api/member
@@ -31,14 +31,33 @@ Content-Type: application/json
 }
 ###
 
-POST http://localhost:8080/api/boards
+POST http://localhost:8080/api/auth/boards/post
 Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDU5OTgwLCJpYXQiOjE2NjU5NzM1ODB9.3sxtP3Vtmmz63_IEbJNFQIcjUHa5eqMf9Jttgr4AkDE
 
 {
-  "header":{
-    "Access_Token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY1ODk4Njc2LCJpYXQiOjE2NjU4OTg2NjZ9.uVAbysWUKRvGsBh9T_90M_1UZOXDArZmVc72jwMXt-8"
-  },
-    "content": "content1",
-    "title": "title1"
+    "content": "content1222",
+    "title": "title2221"
 
+}
+###
+
+GET http://localhost:8080/api/auth/boards
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:8080/api/auth/boards/delete/1
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDcxNDQwLCJpYXQiOjE2NjU5ODUwNDB9.TNZur2LSMnea5P_KZHJold2DZ4iEIb3UqwSxiamvajI
+
+###
+
+PUT http://localhost:8080/api/auth/boards/update/1
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDcyMzk2LCJpYXQiOjE2NjU5ODU5OTZ9.N7uzHNULoWvMgzmHn2RVEC2sPxTZ1xoYCkstKs0tU4E
+
+{
+
+  "title": "update Title"
 }

@@ -1,6 +1,7 @@
 package com.sparta.invisible_project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.invisible_project.Dto.MemberRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Member {
     private String username;
 
     @Column
+    @JsonIgnore
     private String password;
 
 //    @OneToMany(cascade = CascadeType.ALL)
