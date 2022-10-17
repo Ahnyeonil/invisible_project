@@ -26,9 +26,14 @@ public class Board {
     private Members member;
 
     public Board (BoardDto boardDto, Members member){
-        this.content = boardDto.getContent();
         this.title = boardDto.getTitle();
+        this.content = boardDto.getContent();
         this.member = member;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
 }

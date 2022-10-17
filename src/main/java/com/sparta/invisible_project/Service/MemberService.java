@@ -1,4 +1,4 @@
-package com.sparta.invisible_project.Service;
+package com.sparta.invisible_project.service;
 
 import com.sparta.invisible_project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
