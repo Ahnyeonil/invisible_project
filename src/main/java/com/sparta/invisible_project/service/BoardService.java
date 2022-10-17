@@ -1,8 +1,8 @@
 package com.sparta.invisible_project.service;
 
 
-import com.sparta.invisible_project.Entity.Board;
-import com.sparta.invisible_project.Entity.Comment;
+import com.sparta.invisible_project.entity.Board;
+import com.sparta.invisible_project.entity.Comment;
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.dto.ResponseDto;
 import com.sparta.invisible_project.model.Members;
