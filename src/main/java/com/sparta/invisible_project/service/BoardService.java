@@ -5,7 +5,7 @@ import com.sparta.invisible_project.entity.Board;
 import com.sparta.invisible_project.entity.Comment;
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.dto.ResponseDto;
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import com.sparta.invisible_project.repository.BoardRepository;
 import com.sparta.invisible_project.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,8 +43,8 @@ public class BoardService {
     // 게시글 등록
     public ResponseDto<?> createBoard(BoardDto boardDto) {
 
-        Members members = new Members();
-        Board board = new Board(boardDto, members);
+        Member member = new Member();
+        Board board = new Board(boardDto, member);
 
         boardRepository.save(board);
 
