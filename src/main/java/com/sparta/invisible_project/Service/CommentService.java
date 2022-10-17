@@ -27,4 +27,10 @@ public class CommentService {
         Comment comment = new Comment(dto,board);
         return ResponseDto.success(commentRepository.save(comment));
     }
+    @Transactional
+    public ResponseDto<?> updateComment(Long id, CommentDto dto){
+        Comment comment = commentRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("no comment exist with following id "+ id));
+        return ResponseDto.success(comment);
+        
+    }
 }

@@ -29,12 +29,12 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNj
 
 ###
 
-POST http://localhost:8080/api/board/1/comment
+POST http://localhost:8080/api/board/comment/1
 Content-Type: application/json
 Access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDg4MjM1LCJpYXQiOjE2NjYwMDE4MzV9.LJseytORCy_UfyNqPSkEEUkEH3e1Iq1JNUmFGcLrBnw
 
 {
-  "content": "commentBody3"
+  "content": "commentBody5"
 }
 ###
 

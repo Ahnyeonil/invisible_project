@@ -28,4 +28,8 @@ public class Comment {
         this.board = board;
     }
 
+    public void updateComment(CommentDto dto){
+        this.content = dto.getContent() == null ? this.content : dto.getContent();
+    }
+
 }
