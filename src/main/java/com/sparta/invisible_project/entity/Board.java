@@ -1,4 +1,4 @@
-package com.sparta.invisible_project.Entity;
+package com.sparta.invisible_project.entity;
 
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.model.Members;

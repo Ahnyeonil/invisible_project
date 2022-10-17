@@ -1,4 +1,4 @@
-package com.sparta.invisible_project.Entity;
+package com.sparta.invisible_project.entity;
 
 import lombok.Getter;
 
