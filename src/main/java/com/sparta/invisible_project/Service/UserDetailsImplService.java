@@ -30,7 +30,6 @@ public class UserDetailsImplService implements UserDetailsService {
                 ()-> new RuntimeException("member not available"));
 //        UserDetailsImpl userDetails = new UserDetailsImpl();
 //        userDetails.setMember(member);
-        System.out.println("impl Service found member"+ member);
         return new UserDetailsImpl(member);
     }
 }

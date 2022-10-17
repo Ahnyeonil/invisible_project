@@ -1,3 +1,53 @@
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "username": "wonbin@gmail.com",
+  "password": "bin1234"
+}
+
+###
+
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "username": "wonbin@gmail.com",
+  "password": "bin1234"
+}
+
+###
+
+POST http://localhost:8080/api/auth/boards/post
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDg4MjM1LCJpYXQiOjE2NjYwMDE4MzV9.LJseytORCy_UfyNqPSkEEUkEH3e1Iq1JNUmFGcLrBnw
+
+{
+  "content": "content1222",
+  "title": "title2221"
+}
+
+###
+
+POST http://localhost:8080/api/board/1/comment
+Content-Type: application/json
+Access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDg4MjM1LCJpYXQiOjE2NjYwMDE4MzV9.LJseytORCy_UfyNqPSkEEUkEH3e1Iq1JNUmFGcLrBnw
+
+{
+  "content": "commentBody3"
+}
+###
+
+GET http://localhost:8080/api/board/comment
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDg4MjM1LCJpYXQiOjE2NjYwMDE4MzV9.LJseytORCy_UfyNqPSkEEUkEH3e1Iq1JNUmFGcLrBnw
+
+
+
+
+###
+
+
 GET http://localhost:8080/api/issue/token
 Accept: application/json
 Refresh_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY3Mjk1MDYzLCJpYXQiOjE2NjU5ODEwNjN9.1sFktVwNMDb2DU0hGfcw5YfRg7pwzXN1mdhM73hom-E
@@ -12,35 +62,10 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/member/login
-Content-Type: application/json
 
-{
-  "username":"wonbin@gmail.com",
-  "password":"bin1234"
-}
 
-###
-POST http://localhost:8080/api/member/signup
-Content-Type: application/json
 
-{
-  "username": "wonbin@gmail.com",
-  "password": "bin1234"
 
-}
-###
-
-POST http://localhost:8080/api/auth/boards/post
-Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDU5OTgwLCJpYXQiOjE2NjU5NzM1ODB9.3sxtP3Vtmmz63_IEbJNFQIcjUHa5eqMf9Jttgr4AkDE
-
-{
-    "content": "content1222",
-    "title": "title2221"
-
-}
-###
 
 GET http://localhost:8080/api/auth/boards
 Content-Type: application/json
@@ -58,6 +83,6 @@ Content-Type: application/json
 Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW5AZ21haWwuY29tIiwiZXhwIjoxNjY2MDcyMzk2LCJpYXQiOjE2NjU5ODU5OTZ9.N7uzHNULoWvMgzmHn2RVEC2sPxTZ1xoYCkstKs0tU4E
 
 {
-
   "title": "update Title"
 }
+
