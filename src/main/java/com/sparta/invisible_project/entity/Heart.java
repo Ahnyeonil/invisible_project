@@ -1,5 +1,6 @@
 package com.sparta.invisible_project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.invisible_project.model.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,12 @@ public class Heart {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
+    @JsonIgnore
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
+    @JsonIgnore
     private Board board;
 
     public Heart(Member member, Board board) {

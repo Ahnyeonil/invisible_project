@@ -1,5 +1,6 @@
 package com.sparta.invisible_project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.model.Member;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member member;
 
     public Board (BoardDto boardDto, Member member){

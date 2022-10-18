@@ -1,11 +1,13 @@
 package com.sparta.invisible_project.repository;
 
+import com.sparta.invisible_project.entity.Board;
 import com.sparta.invisible_project.entity.Heart;
+import com.sparta.invisible_project.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HeartRepository extends JpaRepository<Heart, Long> {
 
-    boolean existsByBoardAndMember(long boardId, String membername);
+    boolean existsByBoardAndMember(Board boardId, Member member);
 
-    void deleteByBoardAndMember(long boardId, String membername);
+    void deleteByBoardAndMember(Board boardId, Member member);
 }

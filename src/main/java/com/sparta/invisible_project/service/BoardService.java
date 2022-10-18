@@ -33,7 +33,7 @@ public class BoardService {
     }
 
     // 게시글 상세
-    public ResponseDto<?> findBoard(long id) {
+    public ResponseDto<?> findBoard(Long id) {
 
         Optional<Board> board = boardRepository.findById(id);
 
@@ -41,9 +41,8 @@ public class BoardService {
     }
 
     // 게시글 등록
-    public ResponseDto<?> createBoard(BoardDto boardDto) {
+    public ResponseDto<?> createBoard(BoardDto boardDto, Member member) {
 
-        Member member = new Member();
         Board board = new Board(boardDto, member);
 
         boardRepository.save(board);
@@ -53,9 +52,13 @@ public class BoardService {
 
     // 게시글 수정
     @Transactional
-    public ResponseDto<?> updateBoard(BoardDto boardDto, long id) {
+    public ResponseDto<?> updateBoard(BoardDto boardDto, Long id, Member member) {
 
         Board updateBoard = boardRepository.findById(id).orElseThrow();
+
+        if(updateBoard.getMember().equals(member)){
+            return ResponseDto.fail(member.getUsername(), "게시글 작성자와 로그인한 사용자가 일치하지 않습니다. (UPDATE)");
+        }
 
         updateBoard.update(boardDto.getTitle(), boardDto.getContent());
 
@@ -63,13 +66,25 @@ public class BoardService {
     }
 
     // 게시글 삭제
-    public ResponseDto<?> deleteBoard(long id) {
+    @Transactional
+    public ResponseDto<?> deleteBoard(Long id, Member member) {
 
         Board board = boardRepository.findById(id).orElse(null);
-        Comment comment = commentRepository.findAllByBoard(board);
+        List<Comment> commentList = commentRepository.findAllByBoard(board);
+
+        if (board.getMember().equals(member)) {
+            return ResponseDto.fail(member.getUsername(), "게시글 작성자와 로그인한 사용자가 일치하지 않습니다. (DELETE)");
+        }
 
         boardRepository.deleteById(id);
-        commentRepository.delete(comment);
+        if(commentList.size() > 0)
+            commentRepository.deleteAll(commentList);
+        // 단건 삭제
+        /*
+        for(Comment comment : commentList){
+            commentRepository.delete(comment);
+        }
+        */
 
         return ResponseDto.success(board);
     }

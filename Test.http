@@ -1,58 +1,91 @@
-GET http://localhost:8090/api/issue/token
+GET http://localhost:8080/api/reissue
 Accept: application/json
 Refresh_Token:
 
 ###
-POST http://localhost:8090/api/account/login
+POST http://localhost:8080/api/login
 Content-Type: application/json
 
 {
-  "email": "wonbin@mail.com",
-  "password": "bin1234"
+  "username": "ahnyi",
+  "password": "ayi1234"
 }
 
 ###
-POST http://localhost:8090/api/account/signup
+POST http://localhost:8080/api/signup
 Content-Type: application/json
 
 {
-  "username": "wonbin@mail.com",
-  "password": "bin1234"
+  "username": "ahnyi",
+  "password": "ayi1234",
+  "passwordConfirm": "ayi1234"
 }
 
 ###
-POST http://localhost:8090/api/save/course
-Content-Type: application/json
-Access_Token:
-
-{
-  "title": "Spring Basic CRUD API",
-  "instructors": "최원빈 튜터",
-  "cost": 77777
-}
-
-###
-GET http://localhost:8090/api/get/courses
+GET http://localhost:8080/api/boards
 Accept: application/json
-Access_Token:
 
 ###
-GET http://localhost:8090/api/get/course/9
+GET http://localhost:8080/api/boards/detail/1
 Accept: application/json
-Access_Token:
 
 ###
-PUT http://localhost:8090/api/update/course/9
+POST http://localhost:8080/api/auth/boards/create
 Content-Type: application/json
-Access_Token:
+Authorization:
 
 {
-  "title": "JPA"
+  "title": "Spring Basic CRUD API1",
+  "content": "스프링1"
 }
 
 ###
-DELETE http://localhost:8090/api/delete/course/9
-Accept: application/json
-Access_Token:
+PUT http://localhost:8080/api/auth/boards/update/1
+Content-Type: application/json
+Authorization:
+
+{
+  "title": "Spring Data JPA",
+  "content": "JPA"
+}
 
 ###
+DELETE http://localhost:8080/api/auth/boards/delete/3
+Content-Type: application/json
+Authorization:
+
+###
+GET http://localhost:8080/api/comments
+Accept: application/json
+
+###
+GET http://localhost:8080/api/comments/detail/1
+Accept: application/json
+
+###
+POST http://localhost:8080/api/auth/2/comments/create
+Content-Type: application/json
+Authorization:
+
+{
+  "body": "Spring Basic CRUD API Comment3"
+}
+
+###
+PUT http://localhost:8080/api/auth/1/comments/update/1
+Content-Type: application/json
+Authorization:
+
+{
+  "body": "Spring Data JPA Comment update"
+}
+
+###
+DELETE http://localhost:8080/api/auth/1/comments/delete/3
+Content-Type: application/json
+Authorization:
+
+###
+POST http://localhost:8080/api/auth/heart/1
+Content-Type: application/json
+Authorization:
