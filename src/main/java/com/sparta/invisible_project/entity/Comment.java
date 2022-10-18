@@ -1,5 +1,6 @@
 package com.sparta.invisible_project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.invisible_project.model.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,13 @@ public class Comment {
     private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "board_id")
+    @JsonIgnore
     private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member member;
 
     //Board 에서 붙일지 comment 에서 붙일지는 향후 결정. 단방향/양방향

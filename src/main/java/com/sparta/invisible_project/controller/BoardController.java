@@ -2,8 +2,10 @@ package com.sparta.invisible_project.controller;
 
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.dto.ResponseDto;
+import com.sparta.invisible_project.security.MemberDetails;
 import com.sparta.invisible_project.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,22 +23,22 @@ public class BoardController {
     }
 
     @GetMapping("/boards/detail/{id}")
-        public ResponseDto<?> findBoard(@RequestParam long id) {
+        public ResponseDto<?> findBoard(@PathVariable Long id) {
         return boardService.findBoard(id);
     }
 
     @PostMapping("/auth/boards/create")
-    public ResponseDto<?> createBoard(@RequestBody BoardDto boardDto) {
-        return boardService.createBoard(boardDto);
+    public ResponseDto<?> createBoard(@RequestBody BoardDto boardDto, @AuthenticationPrincipal MemberDetails memberDetails) {
+        return boardService.createBoard(boardDto, memberDetails.getMember());
     }
 
-    @PutMapping("/auth/boards/update")
-    public ResponseDto<?> updateBoard(@RequestBody BoardDto boardDto, long id) {
-        return boardService.updateBoard(boardDto, id);
+    @PutMapping("/auth/boards/update/{id}")
+    public ResponseDto<?> updateBoard(@RequestBody BoardDto boardDto,  @PathVariable Long id, @AuthenticationPrincipal MemberDetails memberDetails) {
+        return boardService.updateBoard(boardDto, id, memberDetails.getMember());
     }
 
-    @DeleteMapping("/auth/boards/delete")
-    public ResponseDto<?> deleteBoard(long id) {
-        return boardService.deleteBoard(id);
+    @DeleteMapping("/auth/boards/delete/{id}")
+    public ResponseDto<?> deleteBoard( @PathVariable Long id, @AuthenticationPrincipal MemberDetails memberDetails) {
+        return boardService.deleteBoard(id, memberDetails.getMember());
     }
 }

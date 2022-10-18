@@ -36,11 +36,14 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        System.out.println(username);
         Member member = memberRepository
                 .findByUsername(username)
                 .orElseThrow(
                         ()->new UsernameNotFoundException(username+"을 찾을 수 없습니다")
                 );
+        System.out.println(member);
         return new MemberDetails(member);
     }
 
