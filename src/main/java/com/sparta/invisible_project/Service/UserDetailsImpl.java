@@ -1,5 +1,6 @@
 package com.sparta.invisible_project.Service;
 
+import com.sparta.invisible_project.Dto.LoginDto;
 import com.sparta.invisible_project.Entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -14,8 +14,6 @@ public class LoginResponseDto {
     private int statusCode;
 
 
-
-
     public LoginResponseDto(String msg, int statusCode) {
         this.msg = msg;
         this.statusCode = statusCode;
