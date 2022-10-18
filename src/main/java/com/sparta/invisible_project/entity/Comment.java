@@ -21,7 +21,7 @@ public class Comment {
     private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "board_id")
     @JsonIgnore
     private Board board;
 

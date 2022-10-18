@@ -5,7 +5,6 @@ import com.sparta.invisible_project.entity.Heart;
 import com.sparta.invisible_project.model.Member;
 import com.sparta.invisible_project.repository.BoardRepository;
 import com.sparta.invisible_project.repository.HeartRepository;
-import com.sparta.invisible_project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class HeartService {
     @Transactional
     public void heart(Long boardId, Member member) {
 
-        Board board = boardRepository.findById(boardId).orElse(null);
+        Board board = boardRepository.findById(boardId).orElseThrow();
 
         if(heartRepository.existsByBoardAndMember(board, member)){
             heartRepository.deleteByBoardAndMember(board, member);

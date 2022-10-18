@@ -17,12 +17,12 @@ public class Heart {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "member_id")
     @JsonIgnore
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "board_id")
     @JsonIgnore
     private Board board;
 

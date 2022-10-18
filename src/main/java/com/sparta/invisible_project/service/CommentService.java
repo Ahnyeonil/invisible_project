@@ -41,7 +41,7 @@ public class CommentService {
     // 댓글 등록
     public ResponseDto<?> createComment(CommentDto commentDto, Long boardId, Member member) {
 
-        Board board = boardRepository.findById(boardId).orElse(null);
+        Board board = boardRepository.findById(boardId).orElseThrow();
         Comment comment = new Comment(commentDto.getBody(), board, member);
 
         commentRepository.save(comment);
@@ -53,9 +53,9 @@ public class CommentService {
     @Transactional
     public ResponseDto<?> updateComment(CommentDto commentDto, Long boardId, Long commentId, Member member) {
 
-        Comment updateComment = commentRepository.findById(commentId).orElse(null);
+        Comment updateComment = commentRepository.findById(commentId).orElseThrow();
 
-        if(updateComment.getMember().equals(member)){
+        if(!updateComment.getMember().getMember_id().equals(member.getMember_id())){
             return ResponseDto.fail(member.getUsername(), "댓글 작성자와 로그인한 사용자가 일치하지 않습니다. (UPDATE)");
         }
 
@@ -68,9 +68,9 @@ public class CommentService {
     @Transactional
     public ResponseDto<?> deleteComment(Long boardId, Long commentId, Member member) {
 
-        Comment deleteComment = commentRepository.findById(commentId).orElse(null);
+        Comment deleteComment = commentRepository.findById(commentId).orElseThrow();
 
-        if(deleteComment.getMember().equals(member)){
+        if(!deleteComment.getMember().getMember_id().equals(member.getMember_id())){
             return ResponseDto.fail(member.getUsername(), "댓글 작성자와 로그인한 사용자가 일치하지 않습니다. (DELETE)");
         }
 

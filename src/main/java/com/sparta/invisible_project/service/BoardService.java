@@ -56,7 +56,7 @@ public class BoardService {
 
         Board updateBoard = boardRepository.findById(id).orElseThrow();
 
-        if(updateBoard.getMember().equals(member)){
+        if(!updateBoard.getMember().getMember_id().equals(member.getMember_id())){
             return ResponseDto.fail(member.getUsername(), "게시글 작성자와 로그인한 사용자가 일치하지 않습니다. (UPDATE)");
         }
 
@@ -69,10 +69,10 @@ public class BoardService {
     @Transactional
     public ResponseDto<?> deleteBoard(Long id, Member member) {
 
-        Board board = boardRepository.findById(id).orElse(null);
+        Board board = boardRepository.findById(id).orElseThrow();
         List<Comment> commentList = commentRepository.findAllByBoard(board);
 
-        if (board.getMember().equals(member)) {
+        if (!board.getMember().getMember_id().equals(member.getMember_id())) {
             return ResponseDto.fail(member.getUsername(), "게시글 작성자와 로그인한 사용자가 일치하지 않습니다. (DELETE)");
         }
 
