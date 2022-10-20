@@ -8,10 +8,13 @@ import com.sparta.invisible_project.Entity.Comment;
 import com.sparta.invisible_project.Repository.BoardRepository;
 import com.sparta.invisible_project.Repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,31 +22,27 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final BoardRepository boardRepository;
 
-    public ResponseDto<?> getComment() {
-        System.out.println();
-        return ResponseDto.success(commentRepository.findAll());
+    public ResponseEntity<List<Comment>> getComment() {
+        return new ResponseEntity<>(commentRepository.findAll(),HttpStatus.OK);
     }
 
     @Transactional
-    public ResponseDto<?> createComment(Long id, CommentDto dto, UserDetailsImpl userDetails) {
+    public ResponseEntity<Comment> createComment(Long id, CommentDto dto, UserDetailsImpl userDetails) {
         Board board = boardRepository.findById(id).orElseThrow(()->new IllegalArgumentException("board with such Id does not exist"));
-        if(!board.getMember().getUsername().equals(userDetails.getMember().getUsername() )){
 
+        if(board.getMemberId()!=(userDetails.getMember().getMember_id())){
             throw new IllegalArgumentException("you arent authorize to leave a comment");
         }
 
-
         Comment comment = new Comment(dto,board);
+        board.getComments().add(comment);
 
-
-
-
-        return ResponseDto.success(commentRepository.save(comment));
+        return new ResponseEntity<>(comment, HttpStatus.OK);
     }
     @Transactional
-    public ResponseDto<?> updateComment(Long id, CommentDto dto){
+    public ResponseEntity<Comment> updateComment(Long id, CommentDto dto){
         Comment comment = commentRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("no comment exist with following id "+ id));
-        return ResponseDto.success(comment);
+        return new ResponseEntity<>(comment, HttpStatus.OK);
         
     }
 }

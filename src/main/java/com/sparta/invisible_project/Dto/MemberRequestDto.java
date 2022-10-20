@@ -13,7 +13,6 @@ public class MemberRequestDto {
     @NotBlank
     private String password;
 
-
     public MemberRequestDto(String username, String password) {
         this.username = username;
         this.password = password;

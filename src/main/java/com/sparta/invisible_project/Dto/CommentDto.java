@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,16 +15,10 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class CommentDto {
     private Long id;
+    @NotBlank(message = "content can't be blank")
     private String content;
-    private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
-    private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private Member member;
     private Board board;
-
-    // Dto - > entity
-
-
-
 }
 
 

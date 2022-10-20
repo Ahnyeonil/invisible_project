@@ -4,6 +4,7 @@ package com.sparta.invisible_project.Controller;
 import com.sparta.invisible_project.Dto.LoginDto;
 import com.sparta.invisible_project.Dto.MemberRequestDto;
 import com.sparta.invisible_project.Dto.LoginResponseDto;
+import com.sparta.invisible_project.Dto.ResponseDto;
 import com.sparta.invisible_project.Jwt.JwtUtil;
 import com.sparta.invisible_project.Service.MemberService;
 import com.sparta.invisible_project.Service.UserDetailsImpl;
@@ -38,7 +39,4 @@ public class MemberController {
         response.addHeader(JwtUtil.ACCESS_TOKEN,jwtUtil.createToken(userDetails.getMember().getUsername(),"Access"));
         return new LoginResponseDto("Issue Success", HttpStatus.OK.value());
     }
-
-
-
 }

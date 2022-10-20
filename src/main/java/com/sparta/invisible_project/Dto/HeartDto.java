@@ -9,9 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class HeartDto {
-
     private long board_id;
     private long member_id;
-
-
 }

@@ -21,7 +21,7 @@ import java.util.List;
 @Getter
 @RequiredArgsConstructor
 @Component
-public class Member {
+public class Member extends Timestamp  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,29 +29,12 @@ public class Member {
 
     @Column
     private String username;
-    @Column(name = "created_date")
-    @CreatedDate
-    private String createdDate;
 
-    @Column(name = "modified_date")
-    @LastModifiedDate
-    private String modifiedDate;
     @Column
     @JsonIgnore
     private String password;
-//
-    @Fetch(FetchMode.JOIN)
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Board> boards = new ArrayList<>();
-//
-//    public Member(String username, String password, List<Board> boards) {
-//        this.username = username;
-//        this.password = password;
-//        this.boards = boards;
-//    }
 
     public Member(MemberRequestDto requestDto) {
-
         this.username = requestDto.getUsername();
         this.password = requestDto.getPassword();
 

@@ -1,11 +1,13 @@
 package com.sparta.invisible_project.Entity;
 
 import com.sparta.invisible_project.Dto.HeartDto;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Heart {
     @Id
@@ -14,7 +16,6 @@ public class Heart {
 
     @Column
     private long boardId;
-
 
     @Column
     private long memberId;

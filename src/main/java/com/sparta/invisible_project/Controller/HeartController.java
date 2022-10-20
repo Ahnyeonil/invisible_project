@@ -16,10 +16,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth/heart")
 public class HeartController {
     private final HeartService heartService;
-
     @PostMapping("/like/{boardId}")
     public ResponseDto<HeartDto> heart(HeartDto heartDto, @PathVariable Long boardId,@AuthenticationPrincipal UserDetailsImpl userDetails){
-
         heartService.heart(heartDto,boardId,userDetails);
         return  ResponseDto.success(heartDto);
     }

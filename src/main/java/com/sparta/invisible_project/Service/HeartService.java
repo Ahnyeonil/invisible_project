@@ -3,14 +3,14 @@ package com.sparta.invisible_project.Service;
 import com.sparta.invisible_project.Dto.HeartDto;
 import com.sparta.invisible_project.Dto.ResponseDto;
 import com.sparta.invisible_project.Entity.Heart;
-import com.sparta.invisible_project.Entity.Member;
-import com.sparta.invisible_project.Repository.BoardRepository;
 import com.sparta.invisible_project.Repository.HeartRepository;
-import com.sparta.invisible_project.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -18,13 +18,19 @@ import org.springframework.stereotype.Service;
 public class HeartService {
     private final HeartRepository heartRepository;
 
-    public ResponseDto<?> heart( HeartDto dto,  Long boardId,UserDetailsImpl userDetails){
+    @Transactional
+    public ResponseDto<?> heart(HeartDto dto,  Long boardId,UserDetailsImpl userDetails){
+        long memberId = userDetails.getMember().getMember_id();
+        Optional<Heart> heartCheck = heartRepository.findHeartByMemberId(memberId);
+
+        if(heartCheck.isPresent()){
+            heartRepository.deleteHeartByMemberId(memberId);
+        }
         dto.setBoard_id(boardId);
-        System.out.println("boardId = " + boardId);
-        dto.setMember_id(userDetails.getMember().getMember_id());
-        System.out.println("userDetails = " + userDetails.getMember().getMember_id());
+        dto.setMember_id(memberId);
         Heart heart = new Heart(dto);
         heartRepository.save(heart);
+
         return ResponseDto.success(heartRepository.save(heart));
     }
 
