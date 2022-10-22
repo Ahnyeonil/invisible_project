@@ -1,6 +1,7 @@
 package com.sparta.invisible_project.service;
 
 
+import com.sparta.invisible_project.dto.response.BoardResponseDto;
 import com.sparta.invisible_project.entity.Board;
 import com.sparta.invisible_project.entity.Comment;
 import com.sparta.invisible_project.dto.BoardDto;
@@ -37,11 +38,20 @@ public class BoardService {
     }
 
     // 게시글 상세
-    public ResponseDto<?> findBoard(Long id) {
+    public BoardResponseDto findBoard(Long id) {
 
         Optional<Board> board = boardRepository.findById(id);
+        Long commentCount = commentRepository.countCommentByBoard(board.orElse(null));
+        Long heartCount = heartRepository.countHeartByBoard(board.orElse(null));
 
-        return ResponseDto.success(board);
+        BoardResponseDto boardResponseDto = BoardResponseDto.builder()
+                .title(board.get().getTitle())
+                .content(board.get().getContent())
+                .commentCount(commentCount)
+                .heartCount(heartCount)
+                .build();
+
+        return boardResponseDto;
     }
 
     // 게시글 등록
@@ -88,6 +98,8 @@ public class BoardService {
             heartRepository.deleteAll(heartList);
 
         boardRepository.deleteById(id);
+        // 단방향 연관관계 cascade
+        // 실무에서 cascade 지양 (join 복잡)
         // 단건 삭제
         /*
         for(Comment comment : commentList){

@@ -2,6 +2,7 @@ package com.sparta.invisible_project.controller;
 
 import com.sparta.invisible_project.dto.BoardDto;
 import com.sparta.invisible_project.dto.ResponseDto;
+import com.sparta.invisible_project.dto.response.BoardResponseDto;
 import com.sparta.invisible_project.security.MemberDetails;
 import com.sparta.invisible_project.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class BoardController {
     }
 
     @GetMapping("/boards/detail/{id}")
-        public ResponseDto<?> findBoard(@PathVariable Long id) {
+        public BoardResponseDto findBoard(@PathVariable Long id) {
         return boardService.findBoard(id);
     }
 
